@@ -27,4 +27,9 @@
     return self.contents;
 }
 
+- (BOOL)isEqualToCard:(Card *)card
+{
+    return NO;
+}
+
 @end

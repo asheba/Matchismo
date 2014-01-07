@@ -23,6 +23,11 @@
     return @[@"♠️", @"♣️", @"♥️", @"♦️"];
 }
 
+- (BOOL)isBlack
+{
+    return [[PlayingCard validSuites] indexOfObject:self.suit] < 2;
+}
+
 - (void)setSuit:(NSString *)suit
 {
     if ([[PlayingCard validSuites] containsObject:suit]) {
@@ -70,6 +75,13 @@ static const int MATCH_DIFFICULTY_EXPONENT = 5;
     } else {
         return 0;
     }    
+}
+
+- (BOOL)isEqualToCard:(Card *)card
+{
+    if (!card || ![card isKindOfClass:[self class]]) return NO;
+    
+    return [self.contents isEqualToString:card.contents];
 }
 
 @end

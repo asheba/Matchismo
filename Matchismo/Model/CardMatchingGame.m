@@ -111,13 +111,16 @@ static const int COST_TO_CHOOSE = 1;
                 int matchScore = [card match:self.currentSelection];
                 
                 Card *iteratedCard = [self rotateCurrentSelectionWithCard:card];
-                while (![iteratedCard.contents isEqualToString:card.contents]) {
+                while (![iteratedCard isEqualToCard:card]) {
                     matchScore += [iteratedCard match:self.currentSelection];
                     iteratedCard = [self rotateCurrentSelectionWithCard:iteratedCard];
                 }
                 
+                // Normalize
+                matchScore /= self.matchType;
+                
                 if (matchScore) {
-                    self.score += (matchScore * MATCH_BONUS / self.matchType);
+                    self.score += (matchScore * MATCH_BONUS);
                     card.matched = YES;
                     
                     for (Card *collectedCard in self.currentSelection) {

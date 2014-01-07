@@ -13,6 +13,8 @@
 @property (strong, nonatomic) NSString *suit;
 @property (nonatomic) NSUInteger rank;
 
+- (BOOL)isBlack;
+
 + (NSArray *)validSuites;
 + (NSUInteger)maxRank;
 
